@@ -4,6 +4,7 @@ import {SafeAreaView, StyleSheet, View, Text} from 'react-native'
 import Inicio from './Views/Inicio';
 import NuevoCliente from './Views/NuevoCliente';
 import DetallesCliente from './Views/DetallesCliente';
+import BarraSuperior from './Views/ui/Barra';
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -46,6 +47,12 @@ const App = () => {
           <Stack.Screen
             name="Inicio"
             component={Inicio}
+            options={ ({navigation, route}) => ({
+              headerLeft: (props) => <BarraSuperior {...props}
+                                navigation={navigation}
+                                route={route}
+                                />
+            })}
           />
           <Stack.Screen
             name="NuevoCliente"
