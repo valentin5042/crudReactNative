@@ -8,9 +8,23 @@ import DetallesCliente from './Views/DetallesCliente';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+//Definir el tema
+
+const theme = {
+  ...DefaultTheme.colors,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#1774F2'
+  }
+}
 
 
 const Stack = createStackNavigator();
+
+
 
 const App = () => {
   return (
@@ -19,6 +33,15 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Inicio"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: theme.colors.primary
+            },
+            headerTintColor: theme.colors.surface,
+            headerTitleStyle: {
+              fontWeight: 'bold'
+            }
+          }}
         >
           <Stack.Screen
             name="Inicio"
