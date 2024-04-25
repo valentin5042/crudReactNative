@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextInput, Headline, Button, Paragraph, Dialog, Portal} from 'react-native-paper'
 import globalStyles from './styles/global'
+import axios from 'axios'
 
-const NuevoCliente = () => {
+const NuevoCliente = ({ navigation }) => {
 
   //Campos del formulario
   const [ nombre, setNombre ] = useState('');
@@ -13,20 +14,33 @@ const NuevoCliente = () => {
   const [ alerta, setAlerta ] = useState(false)
 
   //almacena al nuevo cliente en la base de datos
-  const guardarCliente = () => {
+  const guardarCliente = async () => {
     //validar 
     if (nombre === '' || telefono === '' || correo === '' || empresa === '') {
       setAlerta(true);
     }
 
-    //generar cliente 
+    //generar cliente
+    const cliente = { nombre, telefono, correo, empresa }
 
     // guardar el cliente en la API
-
+    try {
+      await axios.post('http:/192.168.0.33:3000/clientes', cliente)
+    } catch (error) {
+      console.log(error)
+    }
 
     //redireccionar
 
+    navigation.navigate('Inicio');
+
     //limpiar el form (opcional)
+
+    setNombre('');
+    setTelefono('');
+    setCorreo('');
+    setEmpresa('');
+
   }
 
   return (

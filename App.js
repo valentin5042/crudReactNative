@@ -10,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 //Definir el tema
 
