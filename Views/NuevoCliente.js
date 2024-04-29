@@ -4,7 +4,9 @@ import { TextInput, Headline, Button, Paragraph, Dialog, Portal} from 'react-nat
 import globalStyles from './styles/global'
 import axios from 'axios'
 
-const NuevoCliente = ({ navigation }) => {
+const NuevoCliente = ({ navigation, route }) => {
+
+  const { setConsultarApi } = route.params;
 
   //Campos del formulario
   const [ nombre, setNombre ] = useState('');
@@ -40,6 +42,9 @@ const NuevoCliente = ({ navigation }) => {
     setTelefono('');
     setCorreo('');
     setEmpresa('');
+
+    // cambiar a true para traernos el nuevo cliente 
+    setConsultarApi(true);
 
   }
 
