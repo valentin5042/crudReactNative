@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-const DetallesCliente = () => {
+const DetallesCliente = ({ route }) => {
+  
   return (
     <>
         <Text>Desde Detalles cliente</Text>
