@@ -2,9 +2,11 @@ import React from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
 import { Headline, Text, Subheading, Button } from 'react-native-paper'
 import globalStyles from './styles/global';
+import axios from 'axios'
 
-const DetallesCliente = ({ route }) => {
-  const { nombre, telefono, correo, empresa } = route.params.item;
+const DetallesCliente = ({ navigation, route }) => {
+  const { setConsultarAPI } = route.params;
+  const { nombre, telefono, correo, empresa, id } = route.params.item;
 
 const mostrarConfirmacion = () => {
   Alert.alert(
@@ -17,9 +19,20 @@ const mostrarConfirmacion = () => {
   )
 }
 
-const eliminarContacto = () => {
-  
+const eliminarContacto = async () => {
+  const url = `http://localhost:3000/clientes/{id}`;
+  try {
+    await axios.delete(url);
+  } catch (error) {
+    console.log(error)
+  }
 }
+
+//redireccionar
+navigation.navigate("Inicio");
+
+// volver a consultar la API
+setConsultarAPI(true)
 
   return (
     <View style={globalStyles.contenedor}>
