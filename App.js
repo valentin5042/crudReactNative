@@ -47,12 +47,12 @@ const App = () => {
           <Stack.Screen
             name="Inicio"
             component={Inicio}
-            options={ ({navigation, route}) => ({
-              headerLeft: (props) => <BarraSuperior {...props}
-                                navigation={navigation}
-                                route={route}
-                                />
-            })}
+            // options={ ({navigation, route}) => ({
+            //   headerLeft: (props) => <BarraSuperior {...props}
+            //                     navigation={navigation}
+            //                     route={route}
+            //                     />
+            // })}
           />
           <Stack.Screen
             name="NuevoCliente"
