@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
-import { Headline, Text, Subheading, Button } from 'react-native-paper'
+import { Headline, Text, Subheading, Button, FAB } from 'react-native-paper'
 import globalStyles from './styles/global';
 import axios from 'axios'
 
@@ -49,6 +49,12 @@ setConsultarAPI(true)
         >
           Eliminar cliente
         </Button>
+
+        <FAB
+          Style={globalStyles.fab}
+          onPress={() => navigation.navigate("NuevoCliente", { cliente: route.params.item, setConsultarAPI })}
+        />
+
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextInput, Headline, Button, Paragraph, Dialog, Portal} from 'react-native-paper'
 import globalStyles from './styles/global'
@@ -15,6 +15,20 @@ const NuevoCliente = ({ navigation, route }) => {
   const [ empresa, setEmpresa ] = useState('');
   const [ alerta, setAlerta ] = useState(false)
 
+  //Detectar si estamos editando
+  useEffect(() => {
+
+    if (route.params.cliente) {
+      const { nombre, telefono, correo, empresa } = route.params.cliente;
+
+      setNombre(nombre);
+      setTelefono(telefono);
+      setCorreo(correo);
+      setEmpresa(empresa);
+    }
+
+  }, [])
+
   //almacena al nuevo cliente en la base de datos
   const guardarCliente = async () => {
     //validar 
@@ -25,11 +39,26 @@ const NuevoCliente = ({ navigation, route }) => {
     //generar cliente
     const cliente = { nombre, telefono, correo, empresa }
 
-    // guardar el cliente en la API
-    try {
-      await axios.post('http:/192.168.0.33:3000/clientes', cliente)
-    } catch (error) {
-      console.log(error)
+    //Si estamos editando o creando un nuevo cliente
+    if (route-params.cliente) {
+      
+      const { id } =route.params.cliente;
+      cliente.id = id
+      const url = 'http:/192.168.0.33:3000/clientes';
+
+      try {
+        await axios.put(url, cliente)
+      } catch (error) {
+        console.log(error)
+      }
+
+    }else {
+          // guardar el cliente en la API
+      try {
+        await axios.post('http:/192.168.0.33:3000/clientes', cliente)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     //redireccionar

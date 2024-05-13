@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Text, FlatList, View, StyleSheet } from 'react-native'
+import { Text, FlatList, View } from 'react-native'
 import axios from 'axios';
 import { List, Headline, Button, FAB } from 'react-native-paper'
 import globalStyle from './styles/global'
@@ -48,21 +48,12 @@ useEffect (() => {
             )}
           />
           <FAB 
-            style={StyleSheet.fab}
+            style={globalStyle.fab}
             onPress={() => navigation.navigate("NuevoCliente", { setConsultarAPI })}
           />
         </View>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    margin: 20,
-    right: 0,
-    bottom: 20
-  }
-})
 
 export default Inicio
